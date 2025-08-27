@@ -81,11 +81,11 @@ export interface FileVersion {
 export interface Collection {
   id: string;
   name: string;
-  description?: string;
-  coverFileId?: string;
+  description?: string | null;
+  coverFileId?: string | null;
   isSmart: boolean;
   smartCriteria?: any;
-  userId?: string;
+  userId?: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -174,10 +174,16 @@ export interface DirectoryWithFiles extends Directory {
   files?: File[];
   children?: Directory[];
   parent?: Directory | null;
+  // Extended field used by services (alias for fullPath)
+  path?: string;
 }
 
 export interface CollectionWithFiles extends Collection {
   files?: CollectionFileWithFile[];
+  // Extended fields used by services (computed from base fields)
+  type?: 'manual' | 'smart'; // computed from isSmart
+  criteria?: SmartCollectionCriteria; // parsed from smartCriteria JSON
+  isPublic?: boolean; // future field, default false for now
 }
 
 export interface CollectionFileWithFile extends CollectionFile {
@@ -525,14 +531,12 @@ export interface CollectionCreateRequest {
   type: 'manual' | 'smart';
   criteria?: SmartCollectionCriteria;
   fileIds?: string[];
-  isPublic?: boolean;
 }
 
 export interface CollectionUpdateRequest {
   name?: string;
   description?: string;
   criteria?: SmartCollectionCriteria;
-  isPublic?: boolean;
 }
 
 export interface CollectionResponse {
@@ -554,8 +558,8 @@ export interface FileTreeNode {
   name: string;
   type: 'file';
   size: number;
-  mimeType: string;
-  directoryId?: string;
+  mimeType: string | null;
+  directoryId?: string | null;
   directoryPath?: string;
   createdAt: Date;
   modifiedAt: Date;
