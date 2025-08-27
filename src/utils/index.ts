@@ -1,4 +1,5 @@
-import { RAW_FILE_EXTENSIONS, JPEG_EXTENSIONS, TIFF_EXTENSIONS, VIDEO_EXTENSIONS, XMP_EXTENSIONS, FileType } from '../constants';
+import { RAW_FILE_EXTENSIONS, JPEG_EXTENSIONS, TIFF_EXTENSIONS, VIDEO_EXTENSIONS, XMP_EXTENSIONS } from '../constants';
+import { FileType } from '../types';
 
 /**
  * File type detection utilities
@@ -90,9 +91,11 @@ export function generateS3Key(userId: string, filename: string, fileId: string):
 /**
  * Hash utilities
  */
-export function generateFileHash(buffer: Buffer, algorithm: 'md5' | 'sha256' = 'sha256'): string {
-  const crypto = require('crypto');
-  return crypto.createHash(algorithm).update(buffer).digest('hex');
+export function generateFileHash(_buffer: ArrayBuffer | Uint8Array, _algorithm: 'md5' | 'sha256' = 'sha256'): string {
+  // Note: This function requires a crypto implementation
+  // In Node.js environment, use: const crypto = require('crypto');
+  // In browser environment, use Web Crypto API
+  throw new Error('generateFileHash requires crypto implementation - implement based on your environment');
 }
 
 /**
