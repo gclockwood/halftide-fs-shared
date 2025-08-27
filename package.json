@@ -1,6 +1,6 @@
 {
-  "name": "@halftide/shared",
-  "version": "1.0.0",
+  "name": "@gclockwood/shared",
+  "version": "1.0.1",
   "description": "Shared types and utilities for Halftide FS photo management system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

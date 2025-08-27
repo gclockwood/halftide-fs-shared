@@ -1,11 +1,11 @@
-# @halftide/shared
+# @gclockwood/shared
 
 Shared types, constants, and utilities for the Halftide FS photo management system.
 
 ## Installation
 
 ```bash
-npm install @halftide/shared
+npm install @gclockwood/shared
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ import {
   ApiResponse,
   FileUploadRequest,
   SearchQuery 
-} from '@halftide/shared';
+} from '@gclockwood/shared';
 
 // Use types for API responses
 const response: ApiResponse<FileWithRelations[]> = {
@@ -44,7 +44,7 @@ import {
   FILE_RELATIONSHIP_TYPES,
   THUMBNAIL_SIZES,
   ERROR_CODES 
-} from '@halftide/shared';
+} from '@gclockwood/shared';
 
 // Check if file type is allowed
 if (ALLOWED_FILE_TYPES.includes(mimeType)) {
@@ -68,7 +68,7 @@ import {
   isValidEmail,
   calculatePagination,
   sanitizeFilename
-} from '@halftide/shared';
+} from '@gclockwood/shared';
 
 // File type detection
 const isRaw = isRawFile('IMG_1234.CR2'); // true
