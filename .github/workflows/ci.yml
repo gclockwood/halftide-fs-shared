@@ -23,17 +23,22 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 8
+        
     - name: Install dependencies
-      run: npm ci
+      run: pnpm install --frozen-lockfile
       
     - name: Build package
-      run: npm run build
+      run: pnpm run build
       
     - name: Run tests
-      run: npm test
+      run: pnpm test
       
     - name: Check TypeScript compilation
-      run: npm run build
+      run: pnpm run build
       
     - name: Lint code
       run: |
